@@ -1,0 +1,911 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>泰國｜曼谷五天四夜</title>
+
+<style>
+:root {
+  --paper: #EFEBDF;
+  --sage: #7C8D79;
+  --clay: #C37C61;
+  --ink: #393A3A;
+  --cream: #F8F6F0;
+  --line: #d8d1c2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Noto Sans TC", "PingFang TC", sans-serif;
+  line-height: 1.75;
+}
+
+a {
+  color: inherit;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #efebdfee;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav {
+  max-width: 1120px;
+  margin: auto;
+  padding: 10px 18px;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.nav a {
+  text-decoration: none;
+  font-size: 13px;
+  padding: 7px 12px;
+  border-radius: 30px;
+}
+
+.nav a:hover,
+.nav a.active {
+  background: var(--sage);
+  color: white;
+}
+
+.wrap {
+  max-width: 1050px;
+  margin: auto;
+  padding: 28px 20px 70px;
+}
+
+.hero {
+  min-height: 390px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #d8dfd2, #eee4d5);
+  padding: 48px 7%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero:after {
+  content: "THAILAND";
+  position: absolute;
+  right: -10px;
+  bottom: -48px;
+  font-family: Georgia, serif;
+  font-size: clamp(65px, 14vw, 150px);
+  color: #ffffff55;
+  letter-spacing: 5px;
+}
+
+.kicker {
+  letter-spacing: 3px;
+  color: var(--clay);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.hero h1 {
+  font-family: Georgia, "Noto Serif TC", serif;
+  font-size: clamp(42px, 8vw, 76px);
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 14px 0;
+}
+
+.hero p {
+  max-width: 500px;
+  margin: 0;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.pill {
+  border: 1px solid #aab4a4;
+  border-radius: 30px;
+  padding: 6px 13px;
+  font-size: 13px;
+  background: #ffffff66;
+}
+
+.section {
+  padding-top: 54px;
+  scroll-margin-top: 75px;
+}
+
+.section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 13px;
+  margin-bottom: 22px;
+}
+
+.section-head small {
+  color: var(--clay);
+  letter-spacing: 2px;
+}
+
+.section h2 {
+  font: 500 30px Georgia, "Noto Serif TC", serif;
+  margin: 0;
+}
+
+.sub {
+  color: #777;
+  font-size: 13px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: var(--cream);
+  border: 1px solid #e4ddcf;
+  border-radius: 17px;
+  padding: 19px;
+}
+
+.card h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.card p {
+  margin: 5px 0;
+}
+
+.tag {
+  display: inline-block;
+  background: #e4e9df;
+  color: #53664f;
+  border-radius: 20px;
+  padding: 3px 9px;
+  font-size: 11px;
+  margin: 3px 4px 3px 0;
+}
+
+a.map {
+  display: inline-block;
+  margin-top: 10px;
+  color: #7c6655;
+  font-size: 13px;
+  text-underline-offset: 3px;
+}
+
+.day-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.day-tabs button {
+  border: 1px solid var(--sage);
+  background: transparent;
+  color: var(--ink);
+  border-radius: 30px;
+  padding: 8px 15px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+}
+
+.day-tabs button.active {
+  background: var(--sage);
+  color: white;
+}
+
+.day-panel {
+  display: none;
+}
+
+.day-panel.active {
+  display: block;
+}
+
+.timeline {
+  border-left: 2px solid #c7d0c1;
+  margin: 15px 0 0 8px;
+  padding-left: 22px;
+}
+
+.stop {
+  position: relative;
+  padding: 0 0 20px;
+}
+
+.stop:before {
+  content: "";
+  position: absolute;
+  left: -29px;
+  top: 8px;
+  width: 10px;
+  height: 10px;
+  background: var(--clay);
+  border: 3px solid var(--paper);
+  border-radius: 50%;
+}
+
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.checklist li {
+  padding: 8px 0;
+  border-bottom: 1px solid #e8e2d7;
+}
+
+.checklist input {
+  accent-color: var(--sage);
+  margin-right: 9px;
+  transform: scale(1.1);
+}
+
+.food-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.food {
+  background: var(--cream);
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid #e4ddcf;
+}
+
+.food h3 {
+  font-size: 16px;
+  margin: 0 0 5px;
+}
+
+footer {
+  text-align: center;
+  color: #8a857a;
+  font-size: 12px;
+  padding: 40px 0 10px;
+}
+
+@media(max-width:650px) {
+  .wrap {
+    padding: 18px 14px 50px;
+  }
+
+  .hero {
+    min-height: 340px;
+    padding: 35px 25px;
+  }
+
+  .grid,
+  .food-list {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding-top: 42px;
+  }
+
+  .section h2 {
+    font-size: 26px;
+  }
+
+  .section-head {
+    align-items: start;
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+<nav class="nav">
+<a href="#home">首頁</a>
+<a href="#prepare">行前準備</a>
+<a href="#itinerary">每日行程</a>
+<a href="#transport">交通資訊</a>
+<a href="#food">美食地圖</a>
+<a href="#shopping">購物清單</a>
+</nav>
+</header>
+
+<main class="wrap">
+
+<!-- 首頁 -->
+<section class="hero" id="home">
+<div class="kicker">TRAVEL JOURNAL · THAILAND</div>
+<h1>bankok</h1>
+<p>曼谷・大城・水上市場<br>把五天四夜，收進一本旅行手帳。</p>
+
+<div class="hero-meta">
+<span class="pill">2026.11.07 — 11.11</span>
+<span class="pill">5 DAYS 4 NIGHTS</span>
+<span class="pill">BANGKOK, THAILAND</span>
+</div>
+</section>
+
+<!-- 行前準備 -->
+<section class="section" id="prepare">
+<div class="section-head">
+<div>
+<small>01 / BEFORE YOU GO</small>
+<h2>行前準備</h2>
+</div>
+<span class="sub">出發前逐項確認</span>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<h3>✈ 航班資訊</h3>
+
+<p><b>去程｜11/7 泰國航空 TG633</b><br>
+13:55 桃園 T1 → 16:50 曼谷 BKK</p>
+
+<p>請於 11:55 前抵達桃園機場。</p>
+
+<hr style="border:0;border-top:1px solid var(--line)">
+
+<p><b>回程｜11/11 泰國航空 TG636</b><br>
+17:30 曼谷 BKK → 22:20 桃園 T1</p>
+
+<p>請於 15:30 前抵達機場。</p>
+</div>
+
+<div class="card">
+<h3>⌂ 住宿資訊</h3>
+<p><b>Hotel Clover Asoke</b></p>
+<p>9, 1 Soi Sukhumvit 16, Bangkok 10110</p>
+<p>入住 14:00 後｜退房 12:00 前</p>
+<p>早餐 06:00–14:00（飯店頂樓）</p>
+<p>電話：+66 2 258 8555</p>
+
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Hotel+Clover+Asoke+Bangkok">
+Google Maps 飯店位置 ↗
+</a>
+</div>
+
+<div class="card">
+<h3>入境與重要文件</h3>
+<ul class="checklist">
+<li><label><input type="checkbox">護照及機票確認資料</label></li>
+<li><label><input type="checkbox">抵達前 72 小時內填寫 TDAC</label></li>
+<li><label><input type="checkbox">保存 TDAC 確認信與 QR Code</label></li>
+<li><label><input type="checkbox">信用卡、泰銖現金</label></li>
+<li><label><input type="checkbox">Klook 行程憑證</label></li>
+</ul>
+</div>
+
+<div class="card">
+<h3>行李與隨身用品</h3>
+<ul class="checklist">
+<li><label><input type="checkbox">SIM 卡／eSIM、下載 Grab</label></li>
+<li><label><input type="checkbox">薄外套、防曬、防蚊液</label></li>
+<li><label><input type="checkbox">雨傘、帽子</label></li>
+<li><label><input type="checkbox">寺廟用長褲、有袖上衣／披肩</label></li>
+<li><label><input type="checkbox">託運前拍攝行李箱照片</label></li>
+</ul>
+</div>
+
+</div>
+
+<p class="sub">
+現金提醒：原始資料提到入境可能抽查個人 20,000 泰銖／家庭 40,000 泰銖或等值外幣；請出發前再向官方確認規定。
+</p>
+</section>
+
+<!-- 每日行程 -->
+<section class="section" id="itinerary">
+<div class="section-head">
+<div>
+<small>02 / DAILY PLAN</small>
+<h2>每日行程</h2>
+</div>
+<span class="sub">DAY 01 — DAY 05</span>
+</div>
+
+<div class="day-tabs">
+<button class="active" data-day="d1">DAY 1</button>
+<button data-day="d2">DAY 2</button>
+<button data-day="d3">DAY 3</button>
+<button data-day="d4">DAY 4</button>
+<button data-day="d5">DAY 5</button>
+</div>
+
+<!-- DAY 1 -->
+<div class="day-panel active" id="d1">
+<div class="card">
+<span class="tag">11/7・六</span>
+<h3>抵達曼谷・Terminal 21</h3>
+<p>搭機抵達 BKK，前往 Hotel Clover Asoke 辦理入住。</p>
+
+<div class="timeline">
+
+<div class="stop">
+<b>曼谷蘇凡納布機場</b>
+<p>入境、領取行李、前往飯店。</p>
+</div>
+
+<div class="stop">
+<b>Hotel Clover Asoke</b>
+<p>入住及稍作休息。</p>
+</div>
+
+<div class="stop">
+<b>Terminal 21 Asoke</b>
+<p>商場逛街、晚餐與甜點。</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Terminal+21+Asok+Bangkok">
+景點地圖 ↗
+</a>
+</div>
+
+<div class="stop">
+<b>Mae Varee 芒果糯米飯</b>
+<p>BTS Thong Lo 附近，05:00–22:00，約 ฿150–200，外帶。</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Mae+Varee+Mango+Sticky+Rice+Bangkok">
+店家地圖 ↗
+</a>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- DAY 2 -->
+<div class="day-panel" id="d2">
+<div class="card">
+<span class="tag">11/8・日</span>
+<span class="tag">Klook 中文團</span>
+
+<h3>美功鐵道市場・丹嫩莎朵水上市場</h3>
+<p>08:15 集合，08:30 出發。集合地點：Future Cafe & Restaurant。</p>
+
+<div class="timeline">
+
+<div class="stop">
+<b>Future Cafe & Restaurant</b>
+<p>82, 8 Ratchadaphisek Rd, Huai Khwang</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Future+Cafe+Restaurant+Ratchadaphisek">
+集合地點地圖 ↗
+</a>
+</div>
+
+<div class="stop">
+<b>美功鐵道市場</b>
+<p>留意火車進站時刻：11:10、11:30、14:30、15:30、17:40。</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Maeklong+Railway+Market">
+市場實景與地圖 ↗
+</a>
+</div>
+
+<div class="stop">
+<b>丹嫩莎朵水上市場</b>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Damnoen+Saduak+Floating+Market">
+市場實景與地圖 ↗
+</a>
+</div>
+
+<div class="stop">
+<b>樹中廟・Dewaree Restaurant</b>
+<p>餐廳提供免費泰服體驗；回程於喬德夜市下車。</p>
+</div>
+
+</div>
+
+<p class="sub">備案：恰圖恰週末市集 09:00–18:00；夜市 18:00–24:00。</p>
+</div>
+</div>
+
+<!-- DAY 3 -->
+<div class="day-panel" id="d3">
+<div class="card">
+<span class="tag">11/9・一</span>
+<h3>昭披耶河・鄭王廟・大皇宮・ICONSIAM</h3>
+
+<div class="timeline">
+
+<div class="stop">
+<b>大皇宮與玉佛寺</b>
+<p>08:30–15:30｜門票 ฿500</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Grand+Palace+Bangkok">
+景點地圖 ↗
+</a>
+</div>
+
+<div class="stop">
+<b>臥佛寺 Wat Pho</b>
+<p>08:00–18:30｜門票 ฿200</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Wat+Pho+Bangkok">
+景點地圖 ↗
+</a>
+</div>
+
+<div class="stop">
+<b>鄭王廟 Wat Arun</b>
+<p>08:00–17:30｜門票 ฿200</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Wat+Arun+Bangkok">
+景點地圖 ↗
+</a>
+</div>
+
+<div class="stop">
+<b>ICONSIAM 暹羅天地</b>
+<p>逛街、用餐與室內水上市場。</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=ICONSIAM+Bangkok">
+商場地圖 ↗
+</a>
+</div>
+
+</div>
+
+<p class="sub">
+可依體力安排石龍軍路、Asiatique 河濱夜市或考山路；船班與接駁時間請當日確認。
+</p>
+</div>
+</div>
+
+<!-- DAY 4 -->
+<div class="day-panel" id="d4">
+<div class="card">
+<span class="tag">11/10・二</span>
+<span class="tag">Klook 一日遊</span>
+
+<h3>大城 Ayutthaya 古蹟巡禮</h3>
+<p>07:45 集合，08:00 出發。集合地點同 DAY 2：Future Cafe & Restaurant。</p>
+
+<div class="timeline">
+
+<div class="stop">
+<b>邦芭茵夏宮</b>
+<p>門票 ฿100；高爾夫球車 ฿400，額外每小時 ฿100。</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Bang+Pa+In+Palace">
+景點地圖 ↗
+</a>
+</div>
+
+<div class="stop">
+<b>崖差蒙空寺 Wat Yai Chai Mongkhon</b>
+<p>門票 ฿40。</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Wat+Yai+Chai+Mongkhon">
+景點地圖 ↗
+</a>
+</div>
+
+<div class="stop">
+<b>午餐</b>
+</div>
+
+<div class="stop">
+<b>柴瓦塔那蘭寺 Wat Chaiwatthanaram</b>
+<p>門票 ฿80。</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Wat+Chaiwatthanaram">
+景點地圖 ↗
+</a>
+</div>
+
+<div class="stop">
+<b>帕席桑碧寺等古蹟、臥佛寺</b>
+<p>依 Klook 團體實際安排；原資料記載部分寺廟門票 ฿80，臥佛免費。</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Wat+Phra+Si+Sanphet+Ayutthaya">
+景點地圖 ↗
+</a>
+</div>
+
+</div>
+
+<p class="sub">
+服裝建議：長褲、有袖上衣／圍巾披肩、包鞋。回程喬德夜市下車。
+</p>
+</div>
+</div>
+
+<!-- DAY 5 -->
+<div class="day-panel" id="d5">
+<div class="card">
+<span class="tag">11/11・三</span>
+<h3>四面佛・曼谷購物・返台</h3>
+
+<div class="timeline">
+
+<div class="stop">
+<b>四面佛 Erawan Shrine</b>
+<p>06:00–22:00｜BTS Chit Lom 站步行約 3 分鐘。</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Erawan+Shrine+Bangkok">
+景點地圖 ↗
+</a>
+</div>
+
+<div class="stop">
+<b>CentralWorld</b>
+<p>逛街、換匯、用餐。</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=CentralWorld+Bangkok">
+商場地圖 ↗
+</a>
+</div>
+
+<div class="stop">
+<b>Big C・水門市場・白金時尚購物中心</b>
+<p>採買伴手禮與服飾；留意退房及前往機場時間。</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Platinum+Fashion+Mall+Bangkok">
+白金購物中心地圖 ↗
+</a>
+</div>
+
+<div class="stop">
+<b>前往 BKK 機場</b>
+<p>15:30 前抵達機場，搭乘 TG636 返台。</p>
+</div>
+
+</div>
+</div>
+</div>
+
+</section>
+
+<!-- 交通資訊 -->
+<section class="section" id="transport">
+<div class="section-head">
+<div>
+<small>03 / GETTING AROUND</small>
+<h2>交通資訊</h2>
+</div>
+<span class="sub">機場・市區・一日遊</span>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<h3>機場 → Hotel Clover Asoke</h3>
+<p>可搭乘 Airport Rail Link 至 Makkasan，轉乘 MRT Phetchaburi，再至 Sukhumvit 站，步行前往飯店。</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/dir/?api=1&origin=Suvarnabhumi+Airport&destination=Hotel+Clover+Asoke&travelmode=transit">
+查看大眾運輸路線 ↗
+</a>
+</div>
+
+<div class="card">
+<h3>Hotel Clover Asoke → 機場</h3>
+<p>回程可搭乘 MRT／Airport Rail Link，或使用 Grab。請預留尖峰塞車與轉乘時間。</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/dir/?api=1&origin=Hotel+Clover+Asoke&destination=Suvarnabhumi+Airport&travelmode=transit">
+查看大眾運輸路線 ↗
+</a>
+</div>
+
+<div class="card">
+<h3>BTS / MRT</h3>
+<p>BTS Asok 與 MRT Sukhumvit 可轉乘。BTS 可使用 Rabbit Card；MRT 可留意支援的感應支付方式。</p>
+</div>
+
+<div class="card">
+<h3>船運與叫車</h3>
+<p>昭披耶河景點可搭乘渡船／快船；Asiatique 有免費接駁船資訊。叫車可使用 Grab，出發前確認上下車點。</p>
+</div>
+
+<div class="card">
+<h3>Klook 團體行程</h3>
+<p>11/8 美功鐵道市場、水上市場；11/10 大城一日遊。兩天均依憑證指定時間與集合地點報到。</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Future+Cafe+Restaurant+Bangkok">
+集合地點 Google Maps ↗
+</a>
+</div>
+
+</div>
+</section>
+
+<!-- 美食地圖 -->
+<section class="section" id="food">
+<div class="section-head">
+<div>
+<small>04 / FOOD NOTES</small>
+<h2>美食地圖</h2>
+</div>
+<span class="sub">依行程地區整理</span>
+</div>
+
+<div class="food-list">
+
+<div class="food">
+<h3>SAVOEY｜Terminal 21 5F</h3>
+<p>泰式海鮮、咖哩螃蟹、炸蝦餅。</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=SAVOEY+Terminal+21+Asok">Google Maps ↗</a>
+</div>
+
+<div class="food">
+<h3>NARA Thai Cuisine｜Terminal 21 3F</h3>
+<p>泰式料理、烤河蝦、冬蔭功。</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=NARA+Thai+Cuisine+Terminal+21">Google Maps ↗</a>
+</div>
+
+<div class="food">
+<h3>have a ZEED｜Terminal 21 4F</h3>
+<p>泰北料理、豬頸肉、冬蔭功。</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=have+a+ZEED+Terminal+21">Google Maps ↗</a>
+</div>
+
+<div class="food">
+<h3>Moom Muum Park｜Terminal 21 5F</h3>
+<p>泰式料理與海鮮餐點。</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Moom+Muum+Park+Terminal+21">Google Maps ↗</a>
+</div>
+
+<div class="food">
+<h3>After You Dessert Café｜Terminal 21 1F</h3>
+<p>蜜糖吐司、特色刨冰。</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=After+You+Terminal+21">Google Maps ↗</a>
+</div>
+
+<div class="food">
+<h3>K. Panich Sticky Rice</h3>
+<p>芒果糯米飯，原資料記載約 ฿130，07:00–17:00。</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=K+Panich+Sticky+Rice+Bangkok">Google Maps ↗</a>
+</div>
+
+<div class="food">
+<h3>Chom Arun</h3>
+<p>鄭王廟景觀餐廳，11:00–21:30；夕陽時段可能需候位。</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Chom+Arun+Restaurant+Bangkok">Google Maps ↗</a>
+</div>
+
+<div class="food">
+<h3>Klong Seafood / Kuang Seafood</h3>
+<p>Klong Seafood 原資料記載週一、二公休且僅收現金；Kuang Seafood 惠恭王站店 11:00–01:30。</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Klong+Seafood+Bangkok">Klong Seafood ↗</a>
+
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Kuang+Seafood+Huai+Khwang">Kuang Seafood ↗</a>
+</div>
+
+<div class="food">
+<h3>大城在地美食</h3>
+<p>Pa Lek Boat Noodle、Pranom 手撕雞河粉、Baan Mai Rim Num。</p>
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Pa+Lek+Boat+Noodle+Ayutthaya">Pa Lek ↗</a>
+
+<a class="map" target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Pranom+Ayutthaya+noodles">Pranom ↗</a>
+</div>
+
+</div>
+</section>
+
+<!-- 購物清單 -->
+<section class="section" id="shopping">
+<div class="section-head">
+<div>
+<small>05 / SHOPPING LIST</small>
+<h2>購物清單</h2>
+</div>
+<span class="sub">買到就打勾</span>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<h3>Big C 超市</h3>
+<ul class="checklist">
+<li><label><input type="checkbox">Clorets 西瓜薄荷糖</label></li>
+<li><label><input type="checkbox">BRUNO 椰子布朗尼脆片</label></li>
+<li><label><input type="checkbox">BIG ROLL 小老闆海苔</label></li>
+<li><label><input type="checkbox">手標泰奶、皇家蜂蜜</label></li>
+<li><label><input type="checkbox">芒果乾、船麵風味泡麵</label></li>
+<li><label><input type="checkbox">Tuptim Kaew 草本滾珠按摩霜</label></li>
+<li><label><input type="checkbox">BIO Super Treatment 護髮膜</label></li>
+</ul>
+</div>
+
+<div class="card">
+<h3>7-11 / 美妝香氛</h3>
+<ul class="checklist">
+<li><label><input type="checkbox">泰式奶茶、泰國限定 Pocky</label></li>
+<li><label><input type="checkbox">泰國限定洋芋片</label></li>
+<li><label><input type="checkbox">Mistine 彩妝、蛇牌爽身粉</label></li>
+<li><label><input type="checkbox">Counterpain 痠痛膏</label></li>
+<li><label><input type="checkbox">草本吸鼻棒、精油、香氛皂</label></li>
+<li><label><input type="checkbox">大哥花生豆、椰子脆片</label></li>
+<li><label><input type="checkbox">大象褲、編織包、手工香皂</label></li>
+</ul>
+</div>
+
+</div>
+</section>
+
+<footer>
+THAILAND TRAVEL JOURNAL · 2026.11.07 — 11.11
+<br>
+把日子放慢一點，去曼谷走走。
+</footer>
+
+</main>
+
+<script>
+// DAY 1～DAY 5 切換
+document.querySelectorAll('.day-tabs button').forEach(btn => {
+  btn.addEventListener('click', () => {
+
+    document.querySelectorAll('.day-tabs button')
+      .forEach(b => b.classList.remove('active'));
+
+    document.querySelectorAll('.day-panel')
+      .forEach(p => p.classList.remove('active'));
+
+    btn.classList.add('active');
+
+    document.getElementById(btn.dataset.day)
+      .classList.add('active');
+  });
+});
+
+// 導覽列目前選取狀態
+document.querySelectorAll('.nav a').forEach(link => {
+  link.addEventListener('click', () => {
+
+    document.querySelectorAll('.nav a')
+      .forEach(a => a.classList.remove('active'));
+
+    link.classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>
